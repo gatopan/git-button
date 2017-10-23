@@ -23,7 +23,10 @@ function addGitButton() {
                     button.type = "button";
                     button.className = "autosaves clipboard_button hoverable capped story_copy_git";
                     button.title = "Copy Git branch command to your clipboard";
-                    button.setAttribute("data-clipboard-text", "git checkout -b " + storyId);
+                    var storyName = singleAction.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('textarea').value;
+                    var storyType = singleAction.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('a.selection span').innerHTML
+                    storyName = storyName.toLowerCase().replace(/ /g,"-").replace(/[^a-z0-9-]/gi,'');
+                    button.setAttribute("data-clipboard-text", "git checkout -b " + storyType + "/" + storyId + "-" + storyName);
                     // TODO: Change the icon to https://raw.githubusercontent.com/primer/octicons/master/lib/svg/git-branch.svg
                     // Get the id copy button
                     var idCopyButton = singleAction.childNodes[5]; // The 5th child is the id button and field
